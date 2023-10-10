@@ -1,0 +1,55 @@
+﻿@model IEnumerable<Proj02N.Models.Clientes>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+@if (Request.IsAuthenticated)
+{ 
+<p>
+    @Html.ActionLink("Incluir Novo Cliente", "IncluirCliente")
+</p>
+}
+else 
+{
+    <br/>
+}
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Codigo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Nome)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Endereco)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Codigo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Nome)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Endereco)
+        </td>
+        <td>
+            @if (Request.IsAuthenticated)
+            {
+              <div>@Html.ActionLink("Alterar", "AlterarCliente", new { id = item.Codigo })</div>                 
+              <div>@Html.ActionLink("Ver os Pedidos", "VerPedidos", new { id = item.Codigo })</div>
+            }
+</td>
+    </tr>
+}
+
+</table>

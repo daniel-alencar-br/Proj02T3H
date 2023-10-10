@@ -1,0 +1,61 @@
+﻿@model IEnumerable<Proj02N.Models.Pedidos>
+
+@{
+    ViewBag.Title = "VerPedidos";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Listagem de Pedidos</h2>
+
+<p>
+    @Html.ActionLink("Criar Novo Pedido", "IncluirPedido")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.CodCliente)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CodPedido)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DataPedido)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Valor)
+        </th>
+        <th>
+        </th>
+
+    </tr>
+
+@foreach (var item in Model) {
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.CodCliente)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.CodPedido)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.DataPedido)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Valor)
+    </td>
+    <td>
+        <div>@Html.ActionLink("Apagar", "ApagarPedido", new { id = item.CodPedido })</div>
+    </td>
+
+</tr>
+}
+
+
+
+</table>
+
+<br/>
+
+<div>
+    @Html.ActionLink("Listagem de Clientes", "Index", "Clientes")
+</div>
